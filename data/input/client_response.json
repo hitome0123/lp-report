@@ -1,0 +1,77 @@
+{
+  "response_date": "2026-03-31",
+  "investment_info": {
+    "timing": "2023年底/2024年初",
+    "stage": "Pre-IPO late stage（接近Series G/延续轮）",
+    "amount": "未知",
+    "equity_pct": "未知",
+    "unrealized_gain": "未知"
+  },
+  "investment_thesis": {
+    "thesis_1": {
+      "name": "赛道确定性（AI Infra > 应用层）",
+      "description": "优先选择AI基础设施（算力/芯片），而不是应用层。在AI早期阶段，先赚卖铲子的钱。依据：所有数据中心硬件都需要重构、不会只有NVIDIA、AI Infra确定性最高。",
+      "fulfillment": "超预期",
+      "evidence": "AI算力需求爆发进入军备竞赛、OpenAI >$10B算力合同（2026-2028）、2026估值~$23B"
+    },
+    "thesis_2": {
+      "name": "技术范式级机会（非GPU路径）",
+      "description": "选择可能改变计算范式的技术路径。创始人早期判断GPU不是最优解，wafer-scale整片晶圆架构，不需要parallel programming。",
+      "fulfillment": "符合预期（但未完全兑现）",
+      "evidence": "已进入OpenAI算力体系作为补充架构、wafer-scale用于大规模推理低延迟场景、但NVIDIA仍是主导标准、Cerebras仍是补充方案非主流范式"
+    },
+    "thesis_3": {
+      "name": "可商业化+可存活（4-5年存续能力）",
+      "description": "必须满足能落地+能活下来。投未来4-5年还能存在的公司，AI时代不能长期不盈利。",
+      "fulfillment": "先低于预期→当前修复至符合预期",
+      "evidence": "前期：G42占比87%+IPO受阻CFIUS审查。最新修复：OpenAI大单降低客户集中度、2024约$272M+245%YoY、IPO窗口重新打开2026"
+    }
+  },
+  "positive_surprises": "OpenAI $10B合约（投资时没预料到）、AMD战略入股、估值增速",
+  "negative_surprises": "未知",
+  "post_investment_management": {
+    "tracking_frequency": "季度+重大事项实时沟通",
+    "founder_relationship": "6年长期关系",
+    "board_seat": "未回答",
+    "industry_resources": "引入/对接潜在LP与客户、安排LP与创始人硅谷面对面沟通、支持中东/亚洲资本与客户网络连接",
+    "ipo_support": "未回答",
+    "customer_expansion": "G42项目中提供投资人网络+credibility提升、OpenAI等客户虽非直接引入但增强背书能力"
+  },
+  "risk_monitoring": {
+    "risk_1": {
+      "risk": "客户集中度过高（G42）",
+      "monitoring": "持续跟踪客户结构变化、跟踪新订单尤其OpenAI",
+      "improvement": "OpenAI大额合同落地、客户结构开始多元化"
+    },
+    "risk_2": {
+      "risk": "技术路径未成为主流（非GPU）",
+      "monitoring": "跟踪客户实际使用场景、性能/成本对比vs NVIDIA",
+      "improvement": "已进入OpenAI体系、被验证为有效补充方案、但仍非主流标准（风险仍在）"
+    },
+    "risk_3": {
+      "risk": "地缘政治/监管风险（CFIUS）",
+      "monitoring": "持续跟踪IPO审批进度、客户区域分布",
+      "improvement": "IPO路径重新启动2026、客户逐步从单一区域扩展"
+    }
+  },
+  "portfolio": {
+    "strategy": "Compute-centric Picks & Shovels + Barbell Strategy",
+    "projects": [
+      {"name": "Groq", "note": "已商业化、推理需求爆发"},
+      {"name": "Cerebras Systems", "note": "训练侧+有收入+有风险"},
+      {"name": "Photonium", "note": "下一代范式（可能爆，也可能归零）"}
+    ],
+    "logic": "不赌应用层赢家，押整个AI算力需求增长。在不同技术路径时间轴上同时下注。"
+  },
+  "exit_strategy": "未知",
+  "backup_exit": "未知",
+  "report_format": {
+    "audience": "未勾选",
+    "frequency": "未勾选",
+    "pages": "1页基金整体+1页目录+3-5页Cerebras正文",
+    "conclusion": "未勾选",
+    "language": "中英双语（英文仅公司/技术名）",
+    "title": "LP投后汇报报告-芯片行业：Cerebras System",
+    "visual_notes": "图表数字不叠、去掉橙色五角星★"
+  }
+}

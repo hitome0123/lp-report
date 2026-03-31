@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP投后汇报报告-芯片行业：Cerebras System</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F5F5F5; color: #333; line-height: 1.7; }
+  .page { width: 210mm; min-height: 297mm; margin: 20px auto; background: #fff; padding: 48px 56px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: relative; page-break-after: always; }
+  .page-header { display: flex; align-items: center; margin-bottom: 36px; padding-bottom: 16px; border-bottom: 3px solid #0096A9; }
+  .page-header-text { font-size: 11px; color: #7C878E; font-weight: 400; }
+  .page-footer { position: absolute; bottom: 28px; left: 56px; right: 56px; display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: #999; border-top: 1px solid #E0E0E0; padding-top: 8px; }
+  .section-title-lg { font-size: 36px; font-weight: 900; color: #333; margin-bottom: 8px; line-height: 1.2; }
+  .chart-title { font-size: 15px; font-weight: 700; color: #0096A9; margin-bottom: 16px; }
+  .chart-box { width: 100%; height: 360px; margin-bottom: 8px; }
+  .chart-box-sm { width: 100%; height: 300px; margin-bottom: 8px; }
+  .chart-source { font-size: 9px; color: #999; text-align: right; margin-bottom: 24px; }
+  .pb-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 8px; page-break-inside: avoid; }
+  .pb-table thead th { background: #0096A9; color: #fff; font-weight: 500; padding: 10px 12px; text-align: left; border: none; }
+  .pb-table thead th:not(:first-child) { text-align: right; }
+  .pb-table tbody td { padding: 9px 12px; border-bottom: 1px solid #E8E8E8; }
+  .pb-table tbody td:not(:first-child) { text-align: right; }
+  .pb-table tbody tr:nth-child(even) { background: #F7FAFB; }
+  .pb-table tbody tr:hover { background: #EDF5F7; }
+  .highlight-box { background: #F0F9FA; border-left: 4px solid #0096A9; padding: 16px 20px; margin: 16px 0; font-size: 12px; page-break-inside: avoid; }
+  .highlight-box strong { color: #0096A9; }
+  .cover { display: flex; flex-direction: column; justify-content: center; min-height: calc(297mm - 96px); }
+  .cover-title { font-size: 42px; font-weight: 900; color: #003D6B; line-height: 1.3; margin-bottom: 16px; }
+  .cover-subtitle { font-size: 18px; color: #0096A9; font-weight: 400; margin-bottom: 40px; }
+  .cover-meta { font-size: 12px; color: #7C878E; line-height: 2; }
+  .cover-line { width: 80px; height: 4px; background: #0096A9; margin-bottom: 24px; }
+  /* Compare grid */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; page-break-inside: avoid; }
+  .compare-card { border: 1px solid #E0E0E0; border-radius: 8px; padding: 14px; background: #FAFCFD; }
+  .compare-card-title { font-size: 13px; font-weight: 700; color: #003D6B; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 2px solid #0096A9; }
+  .compare-row { display: flex; gap: 8px; margin-bottom: 4px; font-size: 10.5px; }
+  .compare-label { font-weight: 700; color: #7C878E; white-space: nowrap; min-width: 52px; }
+  .compare-value { color: #333; flex: 1; }
+  /* Value assessment boxes */
+  .value-box { background: #F0F9FA; border-radius: 8px; padding: 20px; margin: 12px 0; }
+  .value-box h4 { font-size: 13px; font-weight: 700; color: #003D6B; margin-bottom: 10px; }
+  .value-item { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; font-size: 11px; line-height: 1.6; }
+  .value-item .vi-label { font-weight: 700; color: #0096A9; white-space: nowrap; }
+  /* Risk monitoring table */
+  .risk-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 8px; page-break-inside: avoid; }
+  .risk-table thead th { background: #0096A9; color: #fff; font-weight: 500; padding: 10px 10px; text-align: left; border: none; font-size: 10px; }
+  .risk-table tbody td { padding: 9px 10px; border-bottom: 1px solid #E8E8E8; text-align: left; vertical-align: top; line-height: 1.5; }
+  .risk-table tbody tr:nth-child(even) { background: #F7FAFB; }
+  .risk-table tbody tr:hover { background: #EDF5F7; }
+  /* Thesis cards */
+  .thesis-card { border: 1px solid #E0E0E0; border-radius: 8px; padding: 16px; margin-bottom: 12px; background: #FAFCFD; }
+  .thesis-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #0096A9; }
+  .thesis-name { font-size: 14px; font-weight: 700; color: #003D6B; }
+  .thesis-tag { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 12px; }
+  .tag-exceed { background: #E8F5E9; color: #2E7D32; }
+  .tag-meet { background: #FFF3E0; color: #E65100; }
+  .tag-repair { background: #FFF8E1; color: #F57F17; }
+  .thesis-body { font-size: 11px; line-height: 1.7; color: #444; }
+  .thesis-body strong { color: #333; }
+  /* TOC */
+  .toc-item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dashed #E0E0E0; font-size: 13px; }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-title { color: #003D6B; font-weight: 500; }
+  .toc-page { color: #0096A9; font-weight: 700; font-size: 14px; }
+  .toc-section { margin-top: 28px; }
+  .toc-section-title { font-size: 11px; color: #7C878E; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  /* Portfolio highlight */
+  .portfolio-row-highlight { background: #EDF5F7 !important; }
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { width: 210mm; margin: 0; padding: 0; background: #fff; }
+    .page { box-shadow: none; margin: 0; padding: 40px 48px; height: 297mm; width: 210mm; overflow: hidden; page-break-after: always; page-break-inside: avoid; }
+    .page:last-child { page-break-after: auto; }
+    .pb-table, .risk-table, .compare-grid, .chart-box, .chart-box-sm, .thesis-card, .highlight-box, .value-box { page-break-inside: avoid; }
+    .page-footer { position: absolute; bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: 基金整体概况 ==================== -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span>
+  </div>
+  <div class="cover">
+    <div class="cover-line"></div>
+    <div class="cover-title">LP投后汇报报告<br>芯片行业：Cerebras System</div>
+    <div class="cover-subtitle">Compute-centric Picks & Shovels · AI算力赛道投后管理</div>
+    <div class="cover-meta">
+      报告日期：2026年3月<br>
+      投资策略：Compute-centric Picks & Shovels + Barbell Strategy<br>
+      核心逻辑：不赌应用层赢家，押整个AI算力需求增长，在不同技术路径上同时下注<br>
+      数据来源：SEC S-1, Bloomberg Intelligence, Crunchbase, 各公司10-K<br>
+      报告性质：基金投后项目汇报 · 仅供基金LP内部参考<br>
+      密级：机密
+    </div>
+
+    <div style="margin-top:40px">
+      <div class="chart-title" style="font-size:16px">基金芯片赛道投资组合一览</div>
+      <table class="pb-table">
+        <thead><tr>
+          <th style="text-align:left">项目名称</th><th style="text-align:left">细分赛道</th><th style="text-align:left">投资定位</th><th style="text-align:left">当前状态</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>Groq</strong></td><td style="text-align:left">AI推理芯片（LPU）</td><td style="text-align:left">已商业化，推理需求爆发</td><td style="text-align:left">运营中</td></tr>
+          <tr class="portfolio-row-highlight"><td><strong style="color:#0096A9">Cerebras Systems</strong></td><td style="text-align:left">AI训练+推理芯片（WSE）</td><td style="text-align:left">训练侧+有收入+有风险</td><td style="text-align:left">预计Q2 2026 IPO</td></tr>
+          <tr><td><strong>Photonium</strong></td><td style="text-align:left">光子计算芯片</td><td style="text-align:left">下一代范式（高风险高回报）</td><td style="text-align:left">早期研发</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box" style="margin-top:12px; padding:12px 16px; font-size:11px">
+        <strong>组合策略：</strong>Barbell Strategy——Groq（推理侧，已商业化）和Cerebras（训练侧，有收入有IPO路径）构成确定性底仓，Photonium（光子计算）作为范式跃迁期权。三个项目覆盖训练/推理/下一代架构，在不同技术路径的时间轴上同时下注，对冲单一路径风险。
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>1 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 2: 目录 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">目录</div>
+  <div style="margin-top:40px">
+    <div class="toc-section">
+      <div class="toc-section-title">基金整体</div>
+      <div class="toc-item"><span class="toc-title">基金芯片赛道投资组合一览</span><span class="toc-page">1</span></div>
+    </div>
+    <div class="toc-section">
+      <div class="toc-section-title">Cerebras Systems 投后汇报</div>
+      <div class="toc-item"><span class="toc-title">一、投资概况与投资逻辑兑现</span><span class="toc-page">3</span></div>
+      <div class="toc-item"><span class="toc-title">二、核心经营数据与行业环境</span><span class="toc-page">4</span></div>
+      <div class="toc-item"><span class="toc-title">三、融资历程与IPO进展</span><span class="toc-page">5</span></div>
+      <div class="toc-item"><span class="toc-title">四、风险监控与投后管理</span><span class="toc-page">6</span></div>
+      <div class="toc-item"><span class="toc-title">五、投资结论与关键数据速览</span><span class="toc-page">7</span></div>
+    </div>
+  </div>
+  <div class="page-footer"><span>2 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 3: 投资概况与投资逻辑兑现 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">一、投资概况与<br>投资逻辑兑现</div>
+
+  <div class="highlight-box" style="margin:12px 0; padding:12px 16px; font-size:11px; line-height:1.8">
+    <strong>投资概况：</strong>本基金于<strong>2023年底/2024年初</strong>参与Cerebras Systems的<strong>Pre-IPO late stage</strong>轮次（接近Series G/延续轮）。投资时的核心判断是：AI Infra赛道确定性最高，Cerebras的wafer-scale架构是非GPU路径中最接近商业化的标的，且具备4-5年存续能力。截至报告日，Cerebras最新估值$23B（2026.02 H轮），预计Q2 2026 Nasdaq IPO。
+  </div>
+
+  <div class="chart-title" style="margin-top:16px">三大投资逻辑兑现追踪</div>
+
+  <!-- Thesis 1 -->
+  <div class="thesis-card">
+    <div class="thesis-header">
+      <span class="thesis-name">逻辑一：赛道确定性（AI Infra > 应用层）</span>
+      <span class="thesis-tag tag-exceed">超预期</span>
+    </div>
+    <div class="thesis-body">
+      <strong>投前判断：</strong>优先选择AI基础设施（算力/芯片），而不是应用层。在AI早期阶段，先赚卖铲子的钱。所有数据中心硬件都需要重构、不会只有NVIDIA一家、AI Infra确定性最高。<br>
+      <strong>投后验证：</strong>AI算力需求已爆发进入军备竞赛，OpenAI签署>$10B算力合同（2026-2028），Cerebras估值从投资时升至~$23B。赛道确定性判断完全兑现，且增速超出投资时预期。
+    </div>
+  </div>
+
+  <!-- Thesis 2 -->
+  <div class="thesis-card">
+    <div class="thesis-header">
+      <span class="thesis-name">逻辑二：技术范式级机会（非GPU路径）</span>
+      <span class="thesis-tag tag-meet">符合预期（未完全兑现）</span>
+    </div>
+    <div class="thesis-body">
+      <strong>投前判断：</strong>选择可能改变计算范式的技术路径。创始人早期判断GPU不是最优解，wafer-scale整片晶圆架构不需要parallel programming。<br>
+      <strong>投后验证：</strong>已进入OpenAI算力体系作为补充架构，wafer-scale在大规模推理低延迟场景被验证有效。但NVIDIA仍是主导标准，Cerebras目前仍是补充方案而非主流范式。技术方向正确，但颠覆程度低于最乐观预期。
+    </div>
+  </div>
+
+  <!-- Thesis 3 -->
+  <div class="thesis-card">
+    <div class="thesis-header">
+      <span class="thesis-name">逻辑三：可商业化+可存活（4-5年存续能力）</span>
+      <span class="thesis-tag tag-repair">先低于预期 → 已修复</span>
+    </div>
+    <div class="thesis-body">
+      <strong>投前判断：</strong>必须满足能落地+能活下来。投未来4-5年还能存在的公司，AI时代不能长期不盈利。<br>
+      <strong>投后验证：</strong>前期出现风险——G42占比87%+IPO受阻CFIUS审查，一度低于预期。最新修复：OpenAI大单显著降低客户集中度；2024年营收约$272M，同比+245%，验证商业化能力；IPO窗口已于2026年重新打开。存续能力风险已显著缓解。
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin:8px 0; padding:12px 16px; font-size:11px">
+    <strong>超预期亮点：</strong>OpenAI $10B合约（投资时未预料到）、AMD战略入股（H轮参与，技术背书）、估值增速超预期。三大投资逻辑整体兑现度良好，其中赛道判断超预期，技术路径部分兑现，商业化经历波折后已修复。
+  </div>
+
+  <div class="page-footer"><span>3 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 4: 核心经营数据与行业环境 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">二、核心经营数据<br>与行业环境</div>
+
+  <div class="highlight-box" style="font-size:11px; line-height:1.8; padding:10px 16px; margin:8px 0">
+    <strong>经营验证：</strong>标的H1 2024营收<strong>$136.4M</strong>（同比+1,474%），全年约$272M（+245% YoY）。OpenAI $10B多年算力合约（2026.01签署）大幅提升营收可见性，降低了本笔投资的不确定性。
+  </div>
+
+  <div class="chart-title" style="margin-top:12px">AI芯片核心企业对比（LP视角：退出确定性）</div>
+  <table class="pb-table">
+    <thead><tr>
+      <th style="text-align:left">公司</th><th>市值/估值</th><th>年营收</th><th>营收增速</th><th>P/S倍数</th><th>核心产品</th><th style="text-align:left">退出状态</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>NVIDIA</strong></td><td>$4.07T</td><td>$215.9B</td><td>+65%</td><td>~19x</td><td>H100 / B200</td><td style="text-align:left">已上市</td></tr>
+      <tr><td><strong>AMD</strong></td><td>~$340B</td><td>$34.6B</td><td>+34%</td><td>~9.5x</td><td>MI300X / MI350</td><td style="text-align:left">已上市</td></tr>
+      <tr class="portfolio-row-highlight">
+        <td><strong style="color:#0096A9">Cerebras</strong></td><td>$23B</td>
+        <td style="font-size:10px">~$272M<br><span style="color:#999">+245% YoY</span></td>
+        <td style="color:#0096A9;font-weight:700">+245%</td>
+        <td>~85x</td><td>WSE-3</td>
+        <td style="text-align:left"><strong style="color:#0096A9">Q2 2026 IPO</strong></td>
+      </tr>
+      <tr><td><strong>Graphcore</strong></td><td>~$600M</td><td>~$4M</td><td>—</td><td>N/A</td><td>Bow IPU</td><td style="text-align:left">被SoftBank收购</td></tr>
+    </tbody>
+  </table>
+  <div class="chart-source" style="margin-bottom:12px">资料来源: NVIDIA 10-K FY2026, AMD Earnings FY2025, Cerebras S-1, TechCrunch · 截至2026年3月<br>同行对标意义：Graphcore亏损退出验证了非GPU路径的高风险性，Cerebras能走到IPO阶段已属稀缺</div>
+
+  <div class="chart-title">美国AI加速器芯片市场规模（2022-2026E）</div>
+  <div id="chart-market" class="chart-box"></div>
+  <div class="chart-source">资料来源: Bloomberg Intelligence, Silicon Analysts, NVIDIA财报交叉验证 · 口径: AI加速器(GPU/TPU/ASIC) · 美国占全球~42%</div>
+
+  <p style="font-size:11px; line-height:1.8; color:#444; margin-top:4px; text-align:justify">
+    <strong style="color:#0096A9">对本笔投资的意义：</strong>美国AI加速器市场从2022年$6B爆发至2024年$49B，为Cerebras提供了强劲的外部需求支撑。市场增长主要由头部云厂商AI资本开支驱动，Cerebras切入OpenAI已初步验证这一能力。美国CHIPS法案$33.7B补贴+2025年半导体VC $6.2B创新高，政策和资本环境均利好本基金所投赛道。
+  </p>
+
+  <div class="page-footer"><span>4 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 5: 融资历程与IPO进展 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">三、融资历程<br>与IPO进展</div>
+
+  <div class="chart-title" style="margin-top:12px">Cerebras Systems融资历程（2016-2026）</div>
+  <div id="chart-funding" class="chart-box-sm"></div>
+  <div class="chart-source" style="margin-bottom:12px">资料来源: SEC S-1, Crunchbase, 各轮官方公告 · 截至2026年3月<br>LP视角：Tiger Global领投G轮+AMD战略入股H轮，公司从技术验证进入商业验证阶段，IPO确定性显著提升</div>
+
+  <div class="chart-title">核心WSE-3技术参数对比</div>
+  <table class="pb-table">
+    <thead><tr>
+      <th style="text-align:left">参数</th><th>NVIDIA H100</th><th>NVIDIA B200</th><th>AMD MI300X</th><th style="background:#003D6B">Cerebras WSE-3</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>制程</td><td>TSMC 4nm</td><td>TSMC 4nm</td><td>TSMC 5nm</td><td><strong>TSMC 5nm</strong></td></tr>
+      <tr><td>晶体管数</td><td>800亿</td><td>2,080亿</td><td>1,530亿</td><td><strong style="color:#0096A9">4万亿 (50x B200)</strong></td></tr>
+      <tr><td>芯片面积</td><td>814 mm²</td><td>双芯封装</td><td>多芯粒封装</td><td><strong style="color:#0096A9">46,225 mm² (56x H100)</strong></td></tr>
+      <tr><td>AI核心数</td><td>132 SM</td><td>双芯SM</td><td>19,456</td><td><strong style="color:#0096A9">900,000</strong></td></tr>
+      <tr><td>峰值算力 (FP16)</td><td>2,000 TFLOPS</td><td>~4,500 TFLOPS</td><td>2,615 TFLOPS</td><td><strong style="color:#0096A9">125,000 TFLOPS</strong></td></tr>
+      <tr><td>内存</td><td>80GB HBM3</td><td>192GB HBM3e</td><td>192GB HBM3</td><td><strong>44GB片上SRAM</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="chart-source" style="margin-bottom:12px">资料来源: 各公司官方技术文档, ServeTheHome · 技术差异化已验证，WSE-3在大模型推理场景速度20x领先</div>
+
+  <div class="chart-title">IPO进程关键节点</div>
+  <table class="pb-table">
+    <thead><tr>
+      <th style="text-align:left">时间</th><th style="text-align:left">事件</th><th style="text-align:left">状态</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="text-align:left">2024.08</td><td style="text-align:left">秘密提交S-1</td><td style="text-align:left">已完成</td></tr>
+      <tr><td style="text-align:left">2024.09</td><td style="text-align:left">公开S-1</td><td style="text-align:left">已完成</td></tr>
+      <tr><td style="text-align:left">2025.03</td><td style="text-align:left">CFIUS审查通过（G42 UAE背景）</td><td style="text-align:left">已完成</td></tr>
+      <tr><td style="text-align:left">2025.10</td><td style="text-align:left">撤回S-1（财务数据"过时"，实际因营收大幅增长需更新）</td><td style="text-align:left">已完成</td></tr>
+      <tr><td style="text-align:left">2026.02.23</td><td style="text-align:left">重新秘密提交S-1（含OpenAI合约等最新业绩）</td><td style="text-align:left">已完成</td></tr>
+      <tr class="portfolio-row-highlight"><td style="text-align:left"><strong style="color:#0096A9">Q2 2026</strong></td><td style="text-align:left"><strong style="color:#0096A9">Nasdaq IPO（CBRS），目标募资~$2B</strong></td><td style="text-align:left"><strong style="color:#0096A9">预计</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="chart-source">LP视角：IPO经历波折但路径已重新打开，撤回S-1的根本原因是业绩大幅改善需要更新财务数据，属于正面信号</div>
+
+  <div class="page-footer"><span>5 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 6: 风险监控与投后管理 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">四、风险监控<br>与投后管理</div>
+
+  <div class="chart-title" style="margin-top:12px">核心风险监控矩阵</div>
+  <table class="risk-table">
+    <thead><tr>
+      <th style="width:20%">核心风险</th>
+      <th style="width:25%">基金监控措施</th>
+      <th style="width:30%">当前改善情况</th>
+      <th style="width:25%">残余风险评估</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>客户集中度过高</strong><br><span style="color:#999;font-size:9px">G42曾占87%营收</span></td>
+        <td>持续跟踪客户结构变化，重点跟踪新订单（尤其OpenAI）</td>
+        <td>OpenAI $10B大额合同落地，客户结构开始多元化，G42占比显著下降</td>
+        <td style="color:#2E7D32"><strong>已显著缓解</strong></td>
+      </tr>
+      <tr>
+        <td><strong>技术路径未成为主流</strong><br><span style="color:#999;font-size:9px">非GPU路线，SRAM vs HBM</span></td>
+        <td>跟踪客户实际使用场景，持续对比Cerebras vs NVIDIA性能/成本</td>
+        <td>已进入OpenAI体系，被验证为有效补充方案；但NVIDIA仍是主导标准</td>
+        <td style="color:#E65100"><strong>风险仍在</strong><br><span style="font-size:9px">补充方案 ≠ 主流</span></td>
+      </tr>
+      <tr>
+        <td><strong>地缘政治/监管风险</strong><br><span style="color:#999;font-size:9px">CFIUS审查+出口管制</span></td>
+        <td>持续跟踪IPO审批进度，监控客户区域分布变化</td>
+        <td>IPO路径已于2026年重新启动，客户逐步从单一区域扩展</td>
+        <td style="color:#F57F17"><strong>可控但需持续关注</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="chart-title" style="margin-top:20px">投后管理措施</div>
+  <div class="compare-grid">
+    <div class="compare-card">
+      <div class="compare-card-title">跟踪频率与创始人关系</div>
+      <div class="compare-row">
+        <span class="compare-label">跟踪频率</span>
+        <span class="compare-value">季度定期沟通 + 重大事项实时沟通</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">创始人关系</span>
+        <span class="compare-value">与创始人保持6年长期关系，沟通渠道畅通</span>
+      </div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-title">产业资源赋能</div>
+      <div class="compare-row">
+        <span class="compare-label">LP对接</span>
+        <span class="compare-value">引入/对接潜在LP与客户</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">创始人交流</span>
+        <span class="compare-value">安排LP与创始人硅谷面对面沟通</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">资本网络</span>
+        <span class="compare-value">支持中东/亚洲资本与客户网络连接</span>
+      </div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-title">客户拓展支持</div>
+      <div class="compare-row">
+        <span class="compare-label">G42项目</span>
+        <span class="compare-value">提供投资人网络+credibility提升</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">背书效应</span>
+        <span class="compare-value">OpenAI等头部客户虽非直接引入，但增强了整体背书能力</span>
+      </div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-title">投后核心进展</div>
+      <div class="compare-row">
+        <span class="compare-label">技术</span>
+        <span class="compare-value">WSE-3量产验证，推理速度20x领先GPU方案</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">商业</span>
+        <span class="compare-value">新增OpenAI $10B合约，Meta/Mistral AI等头部客户</span>
+      </div>
+      <div class="compare-row">
+        <span class="compare-label">IPO</span>
+        <span class="compare-value">2026.02重新提交S-1，Q2 IPO按计划推进</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer"><span>6 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<!-- ==================== PAGE 7: 投资结论与关键数据速览 ==================== -->
+<div class="page">
+  <div class="page-header"><span class="page-header-text">LP投后汇报报告-芯片行业：Cerebras System（2026.03）</span></div>
+  <div class="section-title-lg">五、投资结论<br>与关键数据速览</div>
+
+  <div class="highlight-box" style="font-size:11px; line-height:1.9; margin-top:12px">
+    基于投后跟踪，本基金投资Cerebras的三大核心逻辑整体兑现：<br><br>
+    （1）<strong>赛道确定性——超预期。</strong>AI算力需求进入军备竞赛，"卖铲子"策略验证成功。<br>
+    （2）<strong>技术范式——符合预期但未完全兑现。</strong>wafer-scale架构已被OpenAI采纳为补充方案，技术方向正确但未颠覆GPU主导地位。<br>
+    （3）<strong>商业化+存续——经历波折后已修复。</strong>客户集中度从G42单一依赖转向多元化，营收+245% YoY，IPO窗口重新打开。<br><br>
+    <strong>退出展望：</strong>建议密切跟踪Q2 2026 IPO进程，提前与投行对接锁定期/减持策略。参考Arm IPO后$54.5B→$170B+的市值表现，Cerebras $23B当前估值在IPO后存在重估空间。<br>
+    <strong>持续关注：</strong>技术路径是否能从"补充方案"升级为"主流选择"、TSMC产能分配、CFIUS政策变化。
+  </div>
+
+  <div class="chart-title" style="margin-top:20px">关键数据速览</div>
+  <div style="padding:16px; background:#F7FAFB; border-radius:4px">
+    <table class="pb-table">
+      <thead><tr><th style="text-align:left">指标</th><th>数值</th></tr></thead>
+      <tbody>
+        <tr><td>投资时间</td><td><strong>2023年底/2024年初</strong></td></tr>
+        <tr><td>投资轮次</td><td><strong>Pre-IPO late stage</strong>（接近Series G/延续轮）</td></tr>
+        <tr><td>最新估值</td><td><strong>$23B</strong>（Series H, 2026.02）</td></tr>
+        <tr><td>总融资额</td><td>~$2.82B（8轮）</td></tr>
+        <tr><td>2024年营收</td><td>~$272M（+245% YoY）</td></tr>
+        <tr><td>H1 2024营收</td><td>$136.4M（+1,474% YoY，SEC S-1）</td></tr>
+        <tr><td>P/S倍数</td><td>~85x（基于2024年全年营收$272M）</td></tr>
+        <tr><td>核心合约</td><td>OpenAI $10B多年算力合约（2026.01）</td></tr>
+        <tr><td>预计IPO</td><td>Q2 2026 · Nasdaq · CBRS · 目标募资~$2B</td></tr>
+        <tr><td>美国AI加速器市场</td><td>2022 $6B → 2024 $49B → 2026E $84B+</td></tr>
+        <tr><td>WSE-3晶体管</td><td>4万亿（NVIDIA B200的50倍）</td></tr>
+        <tr><td>推理速度优势</td><td>20x（vs NVIDIA GPU方案）</td></tr>
+        <tr><td>投资逻辑兑现度</td><td>赛道超预期 / 技术符合预期 / 商业化已修复</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="value-box" style="margin-top:16px; background:#FAFCFD; border:1px solid #E0E0E0">
+    <h4>基金后续规划</h4>
+    <div class="value-item">
+      <span class="vi-label">IPO退出：</span>
+      <span>紧跟Q2 2026 IPO，提前制定减持/锁定期策略</span>
+    </div>
+    <div class="value-item">
+      <span class="vi-label">持续赋能：</span>
+      <span>继续对接产业资源与LP网络，支持IPO前最后冲刺</span>
+    </div>
+    <div class="value-item">
+      <span class="vi-label">风险监控：</span>
+      <span>保持季度跟踪+重大事项实时沟通机制</span>
+    </div>
+    <div class="value-item">
+      <span class="vi-label">赛道布局：</span>
+      <span>Barbell Strategy持续执行——Groq（推理侧确定性）+ Cerebras（训练侧IPO退出）+ Photonium（范式跃迁期权）</span>
+    </div>
+  </div>
+
+  <div class="page-footer"><span>7 / 7</span><span>仅供基金LP内部参考</span></div>
+</div>
+
+<script>
+const PB = {
+  colors: { primary:'#0096A9', darkBlue:'#003D6B', mint:'#6ECEB2', lightBlue:'#B8D8E8', gray:'#7C878E' },
+  text:'#333333', subText:'#999999', gridLine:'#E8E8E8', bg:'#FFFFFF', fontFamily:"'Noto Sans SC', sans-serif",
+};
+const pbAxisStyle = { axisLine:{show:false}, axisTick:{show:false}, splitLine:{lineStyle:{color:PB.gridLine,type:'solid'}}, axisLabel:{color:PB.text,fontSize:11,fontFamily:PB.fontFamily} };
+const pbAxisStyleNoSplit = { ...pbAxisStyle, splitLine:{show:false} };
+
+// ── EY style: 柱形上方标金额，折线下方标百分比/估值，绝不重叠 ──
+// 核心思路：柱形标签统一在柱顶上方；折线标签统一在数据点下方（或远离柱顶的方向）
+
+// Chart 1: 美国AI加速器市场 (2022-2026)
+(() => {
+  const chart = echarts.init(document.getElementById('chart-market'));
+  const mktVals = [6,27,49,67,84];
+  const yoyVals = [null,350,81,37,25];
+  chart.setOption({
+    grid:{left:56,right:56,top:50,bottom:44},
+    xAxis:{type:'category',data:['2022','2023','2024','2025E','2026E'],...pbAxisStyleNoSplit,
+      axisLabel:{...pbAxisStyle.axisLabel,fontSize:12,fontWeight:500}},
+    yAxis:[
+      {type:'value',show:false,max:110},
+      {type:'value',show:false,max:420}
+    ],
+    series:[
+      // 柱形：金额标在柱顶上方
+      {name:'市场规模',type:'bar',data:mktVals,barWidth:'52%',
+        itemStyle:{color:PB.colors.primary,borderRadius:[3,3,0,0]},
+        label:{show:true,position:'top',distance:4,
+          formatter:p=>'$'+p.value+'B',fontSize:13,fontWeight:'bold',
+          color:PB.colors.darkBlue,fontFamily:PB.fontFamily}},
+      // 折线：增速标在数据点下方
+      {name:'YoY增速',type:'line',yAxisIndex:1,data:yoyVals,connectNulls:true,
+        lineStyle:{color:PB.colors.mint,width:2.5},
+        itemStyle:{color:PB.colors.mint,borderWidth:2,borderColor:'#fff'},
+        symbolSize:10,symbol:'circle',
+        label:{show:true,position:'bottom',distance:6,
+          formatter:p=>p.value?p.value+'%':'',fontSize:11,fontWeight:'bold',
+          color:PB.colors.mint,fontFamily:PB.fontFamily,
+          backgroundColor:'rgba(255,255,255,0.85)',padding:[1,4],borderRadius:8}}
+    ],
+    legend:{bottom:4,itemWidth:20,itemHeight:14,itemGap:32,
+      textStyle:{fontSize:13,fontWeight:'bold',color:PB.text,fontFamily:PB.fontFamily}},
+    tooltip:{trigger:'axis',backgroundColor:'#fff',borderColor:PB.gridLine,
+      textStyle:{color:PB.text,fontSize:11,fontFamily:PB.fontFamily},
+      formatter:ps=>{
+        let s=ps[0].axisValue+'<br>';
+        ps.forEach(p=>{if(p.value!=null)s+=p.marker+' '+p.seriesName+': <b>'+(p.seriesIndex===0?'$'+p.value+'B':p.value+'%')+'</b><br>'});
+        return s;
+      }},
+  });
+  window.addEventListener('resize',()=>chart.resize());
+})();
+
+// Chart 2: 融资历程 (2016-2026)
+(() => {
+  const chart = echarts.init(document.getElementById('chart-funding'));
+  const amounts = [27,25,62,84,272,250,1100,1000];
+  const vals =    [null,null,null,1.7,2.4,4.0,8.1,23.0];
+
+  // 柱形标签：全部在柱顶上方，小柱也标（EY风格：每根柱都有数字）
+  const barData = amounts.map(v=>({
+    value:v,
+    label:{show:true,position:'top',distance:3,
+      formatter:'$'+v+'M',
+      fontSize:v>=500?13:v>=100?11:9,
+      fontWeight:v>=500?'900':'bold',
+      color:PB.colors.darkBlue,fontFamily:PB.fontFamily}
+  }));
+
+  // 估值折线标签：统一在数据点下方，用白底药片，和柱顶标签不会冲突
+  const valData = vals.map((v,i)=>{
+    if(v===null) return {value:null};
+    const isLast = i===vals.length-1;
+    return {value:v, label:{show:true,
+      position:'bottom',distance:6,
+      formatter:'$'+v+'B',
+      fontSize:isLast?14:11,
+      fontWeight:isLast?'900':'bold',
+      color:PB.colors.mint,fontFamily:PB.fontFamily,
+      backgroundColor:'rgba(255,255,255,0.9)',
+      padding:[2,6],borderRadius:10,
+      borderColor:PB.colors.mint,borderWidth:1}};
+  });
+
+  chart.setOption({
+    grid:{left:56,right:56,top:50,bottom:70},
+    xAxis:{type:'category',
+      data:['A轮\n2016','B轮\n2016','C轮\n2017','D轮\n2018','E轮\n2019','F轮\n2021','G轮\n2025','H轮\n2026'],
+      ...pbAxisStyleNoSplit,
+      axisLabel:{...pbAxisStyle.axisLabel,interval:0,fontSize:9,lineHeight:14}},
+    yAxis:[
+      {type:'value',show:false,max:1500},
+      {type:'value',show:false,max:32}
+    ],
+    series:[
+      {name:'融资金额',type:'bar',data:barData,barWidth:'48%',
+        itemStyle:{color:PB.colors.primary,borderRadius:[3,3,0,0]}},
+      {name:'投后估值',type:'line',yAxisIndex:1,data:valData,connectNulls:true,
+        lineStyle:{color:PB.colors.mint,width:2.5},
+        itemStyle:{color:PB.colors.mint,borderWidth:2,borderColor:'#fff'},
+        symbolSize:10,symbol:'circle'}
+    ],
+    legend:{bottom:0,itemWidth:20,itemHeight:14,itemGap:32,
+      textStyle:{fontSize:13,fontWeight:'bold',color:PB.text,fontFamily:PB.fontFamily}},
+    tooltip:{trigger:'axis',backgroundColor:'#fff',borderColor:PB.gridLine,
+      textStyle:{color:PB.text,fontSize:11,fontFamily:PB.fontFamily},
+      formatter:ps=>{
+        let s=ps[0].axisValue.replace('\n',' ')+'<br>';
+        ps.forEach(p=>{if(p.value!=null)s+=p.marker+' '+p.seriesName+': <b>'+(p.seriesIndex===0?'$'+p.value+'M':'$'+p.value+'B')+'</b><br>'});
+        return s;
+      }},
+  });
+  window.addEventListener('resize',()=>chart.resize());
+})();
+</script>
+</body>
+</html>
