@@ -36,3 +36,4 @@ Tavily MCP（如已配置）
 | NVIDIA营收 | Fiscal Year（1月结束），FY2026=CY2025.02-2026.01 | 不是Calendar Year |
 | Cerebras TTM营收 | H1 2024 $136.4M + H2增速推算 | 中等置信度，非官方确认 |
 | P/S倍数 | 基于全年营收~$272M，非TTM $206.5M | 两种口径差异：~85x vs ~112x |
+
