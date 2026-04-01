@@ -58,7 +58,7 @@
     "strategy": "Compute-centric Picks & Shovels + Barbell Strategy",
     "projects": [
       {"name": "Groq", "note": "已商业化、推理需求爆发"},
-      {"name": "Cerebras Systems", "note": "训练侧+有收入+有风险"},
+      {"name": "Cerebras Systems Inc.", "note": "训练侧+有收入+有风险"},
       {"name": "Photonium", "note": "下一代范式（可能爆，也可能归零）"}
     ],
     "logic": "不赌应用层赢家，押整个AI算力需求增长。在不同技术路径时间轴上同时下注。"
@@ -71,7 +71,7 @@
     "pages": "1页基金整体+1页目录+3-5页Cerebras正文",
     "conclusion": "未勾选",
     "language": "中英双语（英文仅公司/技术名）",
-    "title": "LP投后汇报报告-芯片行业：Cerebras System",
+    "title": "LP投后汇报报告-芯片行业：Cerebras Systems Inc.",
     "visual_notes": "图表数字不叠、去掉橙色五角星★"
   }
 }

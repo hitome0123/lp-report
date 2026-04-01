@@ -43,7 +43,7 @@ def search_ddg(query, max_results=10):
 
 ```json
 {
-  "company_name": "Cerebras Systems",
+  "company_name": "Cerebras Systems Inc.",
   "founded": "2016",
   "hq": "Sunnyvale, CA",
   "founders": ["Andrew Feldman (CEO)", "..."],

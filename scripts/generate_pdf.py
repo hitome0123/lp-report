@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LP投后汇报报告 - Cerebras System
+LP投后汇报报告 - Cerebras Systems
 生成7页A4 PDF报告（reportlab + matplotlib）
 """
 
@@ -304,7 +304,7 @@ def make_funding_chart(tmp_dir):
     ax2.spines['right'].set_color('#6ECEB2')
     ax2.tick_params(axis='y', colors='#6ECEB2', labelsize=8)
 
-    ax1.set_title('Cerebras Systems Funding History', fontsize=11, fontweight='bold',
+    ax1.set_title('Cerebras Systems Inc. Funding History', fontsize=11, fontweight='bold',
                   color='#003D6B', pad=10)
     # Legend
     lines1, labels1 = ax1.get_legend_handles_labels()
@@ -368,7 +368,7 @@ def page_template(canvas, doc):
     canvas.line(MARGIN_L, H - 38, W - MARGIN_R, H - 38)
     canvas.setFont(FONT_CN, 7)
     canvas.setFillColor(HexColor('#888888'))
-    canvas.drawString(MARGIN_L, H - 34, 'LP投后汇报报告-芯片行业：Cerebras System（2026.03）')
+    canvas.drawString(MARGIN_L, H - 34, 'LP投后汇报报告-芯片行业：Cerebras Systems Inc.（2026.03）')
     # Footer
     canvas.setFont(FONT_CN, 7)
     canvas.setFillColor(HexColor('#999999'))
@@ -400,7 +400,7 @@ def build_pdf():
     story.append(ColorBar(CONTENT_W, 4 * mm, C_PRIMARY))
     story.append(Spacer(1, 20))
     story.append(Paragraph('LP投后汇报报告', S_TITLE_BIG))
-    story.append(Paragraph('芯片行业：Cerebras System', make_style('t2', FONT_CN_BOLD, 20, 28, C_DARK)))
+    story.append(Paragraph('芯片行业：Cerebras Systems Inc.', make_style('t2', FONT_CN_BOLD, 20, 28, C_DARK)))
     story.append(Spacer(1, 8))
     story.append(Paragraph('Compute-centric Picks & Shovels · AI算力赛道投后管理',
                            make_style('sub', FONT_CN, 11, 16, HexColor('#666666'))))
@@ -419,7 +419,7 @@ def build_pdf():
     portfolio_headers = ['公司', '赛道定位', '投资逻辑', '当前状态']
     portfolio_rows = [
         ['Groq', 'AI推理芯片（LPU）', '已商业化，推理需求爆发', '运营中'],
-        ['Cerebras Systems', 'AI训练+推理芯片（WSE）', '训练侧+有收入+有风险', '预计Q2 2026 IPO'],
+        ['Cerebras Systems Inc.', 'AI训练+推理芯片（WSE）', '训练侧+有收入+有风险', '预计Q2 2026 IPO'],
         ['Photonium', '光子计算芯片', '下一代范式（高风险高回报）', '早期研发'],
     ]
     cw = [CONTENT_W * 0.18, CONTENT_W * 0.25, CONTENT_W * 0.32, CONTENT_W * 0.25]
@@ -432,7 +432,7 @@ def build_pdf():
         Paragraph('<b>组合策略说明（Barbell Strategy）</b>',
                   make_style('sb', FONT_CN_BOLD, 9, 13, C_DARK)),
         Paragraph('采用哑铃策略：一端配置已验证的商业化公司（Groq），一端配置前沿范式（Photonium），'
-                  '中间核心仓位押注技术领先+可商业化的Cerebras Systems。',
+                  '中间核心仓位押注技术领先+可商业化的Cerebras Systems Inc.。',
                   make_style('sb2', FONT_CN, 8.5, 13, C_BLACK)),
         Paragraph('三家公司覆盖训练+推理+下一代计算的完整AI芯片赛道，形成风险对冲组合。',
                   make_style('sb3', FONT_CN, 8.5, 13, C_BLACK)),
@@ -474,7 +474,7 @@ def build_pdf():
         Paragraph('<b>投资概况</b>', make_style('ov1', FONT_CN_BOLD, 9, 13, C_DARK)),
         Paragraph('投资时间：2023年底/2024年初  |  轮次：Pre-IPO late stage  |  最新估值：$23B',
                   make_style('ov2', FONT_CN, 8.5, 12, C_BLACK)),
-        Paragraph('Cerebras Systems是全球唯一量产wafer-scale芯片的公司，WSE-3单芯片集成4万亿晶体管，'
+        Paragraph('Cerebras Systems Inc.是全球唯一量产wafer-scale芯片的公司，WSE-3单芯片集成4万亿晶体管，'
                   '在大模型训练效率上相比NVIDIA GPU集群具有架构级优势。',
                   make_style('ov3', FONT_CN, 8.5, 12, C_BLACK)),
     ]

@@ -29,11 +29,11 @@ PHASES = [
         "phase": 1,
         "title": "搜索公司数据",
         "steps": [
-            {"detail": "DDG query: \"Cerebras Systems funding rounds series valuation investors\"", "source": "DuckDuckGo", "delay": 1.8},
+            {"detail": "DDG query: \"Cerebras Systems Inc. funding rounds series valuation investors\"", "source": "DuckDuckGo", "delay": 1.8},
             {"detail": "→ 返回 12 条结果，提取: Series A-H 共8轮，总融资$2.82B", "source": "DuckDuckGo", "delay": 0.6},
             {"detail": "DDG query: \"Cerebras IPO filing SEC S-1 2024 2025 2026 Nasdaq\"", "source": "DuckDuckGo", "delay": 1.5},
             {"detail": "→ 返回 8 条结果，提取: 2026.02.23重新提交S-1，Q2 2026 IPO", "source": "DuckDuckGo", "delay": 0.5},
-            {"detail": "抓取 SEC EDGAR: Cerebras Systems S-1 filing (CIK: 0001854457)", "source": "SEC EDGAR", "delay": 2.2},
+            {"detail": "抓取 SEC EDGAR: Cerebras Systems Inc. S-1 filing (CIK: 0001854457)", "source": "SEC EDGAR", "delay": 2.2},
             {"detail": "→ 解析S-1: H1 2024营收$136.4M, +1,474% YoY, 净亏损$66.6M", "source": "SEC EDGAR", "delay": 0.8},
             {"detail": "DDG query: \"Cerebras OpenAI contract deal 2026 value\"", "source": "DuckDuckGo", "delay": 1.5},
             {"detail": "→ 返回 6 条结果: OpenAI $10B多年算力合约 (2026.01签署)", "source": "Bloomberg", "delay": 0.5},

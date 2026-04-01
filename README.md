@@ -87,7 +87,7 @@ python app.py
 
 ## 报告示例
 
-当前生成的报告以 Cerebras Systems 为标的，包含7页：
+当前生成的报告以 Cerebras Systems Inc. 为标的，包含7页：
 
 1. 封面 + 基金芯片赛道投资组合（Groq / Cerebras / Photonium）
 2. 目录
