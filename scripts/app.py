@@ -244,7 +244,7 @@ FUND_DATA_PATH = os.path.join(DATA_DIR, 'fund_data.json')
 
 @app.route('/api/save', methods=['POST'])
 def save_fund_data():
-    """保存客户填写的基金数据"""
+    """保存用户填写的基金数据"""
     from datetime import datetime
     data = request.get_json()
     if not data:

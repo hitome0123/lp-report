@@ -20,7 +20,7 @@
 - 输出 `comparison_matrix.json`
 
 ### 任务3: 投资逻辑兑现评估
-- 读取客户 `client_response.json` 的3个thesis
+- 读取用户 `user_response.json` 的3个thesis
 - 评估每个thesis的兑现度（超预期/符合预期/低于预期/已修复）
 - 输出 `thesis_assessment.json`
 

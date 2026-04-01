@@ -4,8 +4,8 @@
 
 | 报告页 | 数据项 | 主要来源 | 备用来源 | 置信度 |
 |--------|--------|---------|---------|--------|
-| P1 封面 | 投资组合 | 客户回复 | — | 高 |
-| P3 逻辑兑现 | 3个thesis | client_response.json | — | 高 |
+| P1 封面 | 投资组合 | 用户回复 | — | 高 |
+| P3 逻辑兑现 | 3个thesis | user_response.json | — | 高 |
 | P3 逻辑兑现 | 兑现证据 | DDG搜索+SEC | Bloomberg | 高 |
 | P4 同行对比 | NVIDIA营收 | NVIDIA 10-K | Yahoo Finance | 高 |
 | P4 同行对比 | AMD营收 | AMD 10-K | Earnings报道 | 高 |
@@ -15,7 +15,7 @@
 | P5 融资历程 | 估值轨迹 | Bloomberg | 官方PR | 高 |
 | P5 技术参数 | WSE-3规格 | 官方技术文档 | ServeTheHome | 高 |
 | P5 IPO时间线 | 6个节点 | SEC EDGAR | TechCrunch | 高 |
-| P6 风险 | 风险评估 | 客户回复+LLM | — | 中 |
+| P6 风险 | 风险评估 | 用户回复+LLM | — | 中 |
 | P7 数据速览 | 13项汇总 | 各页数据汇总 | — | 高 |
 
 ## 搜索降级链

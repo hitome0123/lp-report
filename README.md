@@ -6,7 +6,7 @@
 
 ```mermaid
 flowchart LR
-    A[/"客户输入一句话"/] --> B["Phase 1\nDDG搜索\n公司+行业数据"]
+    A[/"用户输入一句话"/] --> B["Phase 1\nDDG搜索\n公司+行业数据"]
     B --> C["Phase 2\nGPT-4o分析\n结构化+对比"]
     C --> D["Phase 3\n交叉验证\n多源比对"]
     D --> E["Phase 4\n报告生成\nLP视角文字"]
@@ -24,8 +24,8 @@ lp-report/
 ├── README.md                      # 本文件
 ├── SKILL.md                       # Agent Skill定义（Claude Code可直接加载）
 ├── data/
-│   ├── input/                     # 客户输入数据
-│   │   └── client_response.json   # 客户回复（投资信息、thesis、风险等）
+│   ├── input/                     # 用户输入数据
+│   │   └── user_response.json    # 用户回复（投资信息、thesis、风险等）
 │   └── output/                    # 生成的报告数据（JSON中间产物）
 ├── modules/                       # 5个Phase执行手册
 │   ├── 01-search.md               # Phase 1: DDG搜索策略 + 输出schema
