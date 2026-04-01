@@ -271,3 +271,4 @@ if __name__ == '__main__':
     print(f'  报告: http://localhost:5010/report')
     print(f'  PDF:  http://localhost:5010/api/download-pdf')
     app.run(host='0.0.0.0', port=5010, debug=True)
+
