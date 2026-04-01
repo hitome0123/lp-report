@@ -81,3 +81,4 @@ const OUT = process.argv[3] || path.join(__dirname, 'report.pdf');
   console.log(`PDF saved: ${OUT} (${pageCount} pages)`);
   await browser.close();
 })();
+
