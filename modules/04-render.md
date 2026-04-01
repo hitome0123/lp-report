@@ -41,3 +41,4 @@ await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
 ## 输出
 - `report/report.html` — 7页交互式报告
 - `report/report.pdf` — 7页A4 PDF（210×297mm）
+
